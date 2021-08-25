@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=p, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="wrapper">
+<div class="container">
+    <div class="flipbox">
+        <div class="lipbox-passive"> <img src="img/lipbox-passive.jpg"> </div>
+      <div class="flipbox-active" onclick="fun_open()">
+          OPEN
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    //Запускает таймер
+    function go(){
+        window.timerId = window.setInterval(timer, 1000);
+    }
+    function timer(){
+        var seconds = document.getElementById('seconds');
+        var minutes = document.getElementById('minutes');
+        var hours = document.getElementById('hours');
+        var now = new Date();
+        var midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 0, 0, 0);
+        var diff =  Math.floor((midnight - now)/1000);//разница в милисекундах, перевели в секунды
+        var hoursRemain   = Math.floor(diff/(60*60));
+        var minutesRemain = Math.floor((diff-hoursRemain*60*60)/60);
+        var secondsRemain = Math.floor(diff%60);
+        hours.innerHTML   = hoursRemain;
+        minutes.innerHTML = addZero(minutesRemain);
+        seconds.innerHTML = addZero(secondsRemain); 
+    }
+    function addZero(num){
+        if(num <=9) return '0'+num;
+            else return num;
+    }
+</script>
+</head>
+<body onload="go()">
+<div id="wrapper">
+    
+    <div style="font-family: 'Style Script', cursive; color:aliceblue; font-size: 20px; margin-bottom: 15px; margin-top: 5%;">    До полуночи осталось:</div>
+    
+    <table border="1" cellpadding="0" cellspacing="0" >
+        <tr>
+            <th>Часы</th>
+            <th>Минуты</th>
+            <th>Секунды</th>
+        </tr>
+        <tr>
+            <td id="hours"></td>
+            <td id="minutes"></td>
+            <td id="seconds"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</body>s
+</html>
